@@ -13,14 +13,24 @@
   </div>
 
   <!-- СПИСОК МАГАЗИНОВ -->
-  <div class="shops">
-    <div class="shop">Магазин 1</div>
-    <div class="shop">Магазин 2</div>
-    <div class="shop">Магазин 3</div>
-    <div class="shop">Магазин 4</div>
-    <div class="shop">Магазин 5</div>
-    <div class="shop">Магазин 6</div>
-  </div>
+<div id="shops" class="shops"></div>
+
+<!-- ЭКРАН МАГАЗИНА -->
+<div id="shop-details" class="shop-details hidden">
+  <button id="back-btn">← Назад</button>
+
+  <h2 id="shop-name"></h2>
+  <p id="shop-description"></p>
+  <p><strong>Часы работы:</strong> <span id="shop-time"></span></p>
+  <p><strong>Адрес:</strong> <span id="shop-address"></span></p>
+
+  <div id="shop-images" class="shop-images"></div>
+
+  <a id="shop-telegram" target="_blank" class="tg-button">
+    Перейти в Telegram
+  </a>
+</div>
+
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 

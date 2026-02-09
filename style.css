@@ -31,3 +31,32 @@ body {
 .shop:hover {
   background: #f0f0f0;
 }
+.hidden {
+  display: none;
+}
+
+.shop-details {
+  padding: 10px;
+}
+
+.shop-images img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.tg-button {
+  display: block;
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+  background: #2ea6ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+#back-btn {
+  margin-bottom: 15px;
+}
