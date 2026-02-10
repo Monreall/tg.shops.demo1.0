@@ -3,42 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Магазины</title>
+  <title>Магазины города</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="time">12:45</div>
-    <div class="search">
-      <span class="icon">🔍</span>
-      <input type="text" placeholder="Поиск..." />
-    </div>
-  </header>
+<header class="header">
+  <div class="search">
+    <span class="icon">🔍</span>
+    <input type="text" placeholder="Поиск магазинов">
+  </div>
+</header>
 
-  <!-- LIST -->
-  <main id="shops" class="shops"></main>
+<main id="shops" class="shops"></main>
 
-  <!-- SHOP DETAILS -->
-  <section id="shop-details" class="shop-details hidden">
-    <button id="back-btn" class="back">← Назад</button>
+<section id="shop-details" class="shop-details hidden">
+  <button id="back-btn" class="back-btn">← Назад</button>
 
-    <h2 id="shop-name"></h2>
-    <p id="shop-description"></p>
+  <h2 id="shop-name"></h2>
+  <p id="shop-description"></p>
 
-    <div class="info">
-      <p>⏰ <span id="shop-time"></span></p>
-      <p>📍 <span id="shop-address"></span></p>
-    </div>
+  <div class="info">
+    <p>⏰ <span id="shop-time"></span></p>
+    <p>📍 <span id="shop-address"></span></p>
+  </div>
 
-    <div id="shop-images" class="images"></div>
+  <div id="shop-images" class="images"></div>
 
-    <a id="shop-telegram" target="_blank" class="tg-link">
-      Перейти в Telegram-канал
-    </a>
-  </section>
+  <a id="shop-telegram" class="tg-link" target="_blank">
+    Перейти в Telegram-канал
+  </a>
+</section>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

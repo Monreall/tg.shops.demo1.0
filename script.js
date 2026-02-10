@@ -2,28 +2,28 @@ const shops = [
   {
     id: 1,
     name: "Магазин 1",
-    description: "Одежда и аксессуары",
+    description: "Одежда и аксессуары для повседневной жизни.",
     workTime: "10:00 – 21:00",
     address: "ул. Центральная, 15",
-    telegram: "https://t.me/shop1",
-    image: "https://via.placeholder.com/300x200"
+    telegram: "https://t.me/monreall",
+    image: "images/IMG_2170.HEIC"
   },
   {
     id: 2,
     name: "Магазин 2",
-    description: "Косметика и уход",
+    description: "Косметика и товары для ухода.",
     workTime: "09:00 – 20:00",
     address: "пр. Мира, 42",
-    telegram: "https://t.me/shop2",
+    telegram: "https://t.me/monreall",
     image: "https://via.placeholder.com/300x200"
   },
   {
     id: 3,
     name: "Магазин 3",
-    description: "Кофейня",
+    description: "Кофейня с авторскими напитками.",
     workTime: "11:00 – 22:00",
     address: "ул. Парковая, 7",
-    telegram: "https://t.me/shop3",
+    telegram: "https://t.me/monreall",
     image: "https://via.placeholder.com/300x200"
   }
 ];
@@ -45,6 +45,7 @@ function renderShops() {
   shops.forEach(shop => {
     const card = document.createElement("div");
     card.className = "shop-card";
+
     card.innerHTML = `
       <img src="${shop.image}">
       <div class="shop-info">
@@ -54,6 +55,7 @@ function renderShops() {
         <p>📍 ${shop.address}</p>
       </div>
     `;
+
     card.onclick = () => openShop(shop);
     shopsContainer.appendChild(card);
   });

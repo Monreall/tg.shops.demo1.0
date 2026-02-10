@@ -5,28 +5,23 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f1f5f9;
-  color: #111827;
+  background: #f6f1eb;
+  color: #2b2b2b;
 }
 
 /* HEADER */
 .header {
-  padding: 12px;
-  background: #f8fafc;
-}
-
-.time {
-  font-weight: 600;
-  margin-bottom: 8px;
+  padding: 16px;
 }
 
 .search {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px;
   gap: 8px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid #e6ded6;
 }
 
 .search input {
@@ -34,45 +29,48 @@ body {
   outline: none;
   flex: 1;
   font-size: 16px;
+  background: transparent;
 }
 
-/* SHOPS LIST */
+/* SHOP LIST */
 .shops {
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .shop-card {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   background: #ffffff;
-  border-radius: 16px;
-  padding: 12px;
+  border-radius: 18px;
+  padding: 14px;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
 }
 
 .shop-card:hover {
-  transform: scale(0.98);
+  transform: translateY(-2px);
 }
 
 .shop-card img {
   width: 90px;
   height: 90px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .shop-info h3 {
   margin: 0 0 4px;
+  font-size: 17px;
 }
 
 .shop-info p {
   margin: 2px 0;
-  color: #6b7280;
   font-size: 14px;
+  color: #7a726b;
 }
 
 /* DETAILS */
@@ -84,24 +82,42 @@ body {
   padding: 16px;
 }
 
-.back {
+.back-btn {
   margin-bottom: 12px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #7a726b;
+  cursor: pointer;
+}
+
+.shop-details h2 {
+  margin-top: 0;
+}
+
+.info p {
+  margin: 6px 0;
+  color: #7a726b;
 }
 
 .images img {
   width: 100%;
-  border-radius: 12px;
-  margin-top: 10px;
+  border-radius: 16px;
+  margin-top: 12px;
 }
 
 .tg-link {
   display: block;
-  margin-top: 20px;
+  margin-top: 22px;
   padding: 14px;
-  background: #2ea6ff;
-  color: white;
   text-align: center;
-  border-radius: 14px;
+  background: #c2a98d;
+  color: #ffffff;
   text-decoration: none;
+  border-radius: 16px;
   font-weight: 600;
+}
+
+.tg-link:hover {
+  background: #b29578;
 }
