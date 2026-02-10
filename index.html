@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Магазины города</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Магазины</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- БАННЕР -->
-  <div class="banner">
-    какая-нибудь реклама
-  </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="time">12:45</div>
+    <div class="search">
+      <span class="icon">🔍</span>
+      <input type="text" placeholder="Поиск..." />
+    </div>
+  </header>
 
-  <!-- СПИСОК МАГАЗИНОВ -->
-<div id="shops" class="shops"></div>
+  <!-- LIST -->
+  <main id="shops" class="shops"></main>
 
-<!-- ЭКРАН МАГАЗИНА -->
-<div id="shop-details" class="shop-details hidden">
-  <button id="back-btn">← Назад</button>
+  <!-- SHOP DETAILS -->
+  <section id="shop-details" class="shop-details hidden">
+    <button id="back-btn" class="back">← Назад</button>
 
-  <h2 id="shop-name"></h2>
-  <p id="shop-description"></p>
-  <p><strong>Часы работы:</strong> <span id="shop-time"></span></p>
-  <p><strong>Адрес:</strong> <span id="shop-address"></span></p>
+    <h2 id="shop-name"></h2>
+    <p id="shop-description"></p>
 
-  <div id="shop-images" class="shop-images"></div>
+    <div class="info">
+      <p>⏰ <span id="shop-time"></span></p>
+      <p>📍 <span id="shop-address"></span></p>
+    </div>
 
-  <a id="shop-telegram" target="_blank" class="tg-button">
-    Перейти в Telegram
-  </a>
-</div>
+    <div id="shop-images" class="images"></div>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
+    <a id="shop-telegram" target="_blank" class="tg-link">
+      Перейти в Telegram-канал
+    </a>
+  </section>
 
   <script src="script.js"></script>
 </body>

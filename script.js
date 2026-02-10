@@ -2,112 +2,79 @@ const shops = [
   {
     id: 1,
     name: "Магазин 1",
+    description: "Одежда и аксессуары",
     workTime: "10:00 – 21:00",
     address: "ул. Центральная, 15",
-    description: "Одежда и аксессуары для повседневной жизни.",
     telegram: "https://t.me/shop1",
-    images: [
-      "https://via.placeholder.com/300x200",
-      "https://via.placeholder.com/300x200"
-    ]
+    image: "https://via.placeholder.com/300x200"
   },
   {
     id: 2,
     name: "Магазин 2",
+    description: "Косметика и уход",
     workTime: "09:00 – 20:00",
     address: "пр. Мира, 42",
-    description: "Косметика и товары для ухода.",
     telegram: "https://t.me/shop2",
-    images: [
-      "https://via.placeholder.com/300x200",
-      "https://via.placeholder.com/300x200"
-    ]
+    image: "https://via.placeholder.com/300x200"
   },
   {
     id: 3,
     name: "Магазин 3",
+    description: "Кофейня",
     workTime: "11:00 – 22:00",
     address: "ул. Парковая, 7",
-    description: "Кофейня с авторскими напитками.",
     telegram: "https://t.me/shop3",
-    images: [
-      "https://via.placeholder.com/300x200",
-      "https://via.placeholder.com/300x200"
-    ]
+    image: "https://via.placeholder.com/300x200"
   }
 ];
 
-const shopsContainer = document.getElementById('shops');
-const detailsScreen = document.getElementById('shop-details');
+const shopsContainer = document.getElementById("shops");
+const details = document.getElementById("shop-details");
 
-const shopName = document.getElementById('shop-name');
-const shopDescription = document.getElementById('shop-description');
-const shopTime = document.getElementById('shop-time');
-const shopAddress = document.getElementById('shop-address');
-const shopImages = document.getElementById('shop-images');
-const shopTelegram = document.getElementById('shop-telegram');
-const backBtn = document.getElementById('back-btn');
-
-
-
+const shopName = document.getElementById("shop-name");
+const shopDescription = document.getElementById("shop-description");
+const shopTime = document.getElementById("shop-time");
+const shopAddress = document.getElementById("shop-address");
+const shopImages = document.getElementById("shop-images");
+const shopTelegram = document.getElementById("shop-telegram");
+const backBtn = document.getElementById("back-btn");
 
 function renderShops() {
-  shopsContainer.innerHTML = '';
+  shopsContainer.innerHTML = "";
 
   shops.forEach(shop => {
-    const div = document.createElement('div');
-    div.className = 'shop';
-    div.textContent = shop.name;
-
-    div.onclick = () => openShop(shop.id);
-
-    shopsContainer.appendChild(div);
+    const card = document.createElement("div");
+    card.className = "shop-card";
+    card.innerHTML = `
+      <img src="${shop.image}">
+      <div class="shop-info">
+        <h3>${shop.name}</h3>
+        <p>${shop.description}</p>
+        <p>⏰ ${shop.workTime}</p>
+        <p>📍 ${shop.address}</p>
+      </div>
+    `;
+    card.onclick = () => openShop(shop);
+    shopsContainer.appendChild(card);
   });
 }
 
-
-
-renderShops();
-
-function openShop(id) {
-  const shop = shops.find(s => s.id === id);
-
-  shopsContainer.classList.add('hidden');
-  detailsScreen.classList.remove('hidden');
+function openShop(shop) {
+  shopsContainer.classList.add("hidden");
+  details.classList.remove("hidden");
 
   shopName.textContent = shop.name;
   shopDescription.textContent = shop.description;
   shopTime.textContent = shop.workTime;
   shopAddress.textContent = shop.address;
-
-  shopImages.innerHTML = '';
-  shop.images.forEach(src => {
-    const img = document.createElement('img');
-    img.src = src;
-    shopImages.appendChild(img);
-  });
-
   shopTelegram.href = shop.telegram;
+
+  shopImages.innerHTML = `<img src="${shop.image}">`;
 }
 
-
-
-
 backBtn.onclick = () => {
-  detailsScreen.classList.add('hidden');
-  shopsContainer.classList.remove('hidden');
+  details.classList.add("hidden");
+  shopsContainer.classList.remove("hidden");
 };
 
-
-//const tg = window.Telegram.WebApp;
-
-// сообщаем Telegram, что приложение готово
-//tg.ready();
-
-// делаем фон под стиль Telegram
-//document.body.style.background = tg.themeParams.bg_color || '#ffffff';
-
-// пример: показываем имя пользователя (если есть)
-//if (tg.initDataUnsafe?.user) {
-  //console.log('Пользователь:', tg.initDataUnsafe.user.first_name);
-//}
+renderShops();
