@@ -1,3 +1,4 @@
+
 const shops = [
   {
     id: 1,
@@ -6,7 +7,12 @@ const shops = [
     workTime: "10:00 – 21:00",
     address: "Тотурбиева, напротив Севиллы",
     telegram: "https://t.me/monreall",
-    image: "images/shop.jpeg"
+    cover: 'images/shop.jpeg',
+
+    images: ["images/shop.jpeg",
+            'images/shop.jpeg',
+            "images/shop.jpeg",
+          ]
     
   },
   {
@@ -16,7 +22,11 @@ const shops = [
     workTime: "09:00 – 20:00",
     address: "Напротив ТЦ Джинан",
     telegram: "https://t.me/monreall",
-    image: "images/mobile.jpg"
+    cover: "images/mobile.jpg",
+    images: ["images/mobile.jpg",
+            'images/mobile.jpg',
+            "images/mobile.jpg",
+          ]
   },
   {
     id: 3,
@@ -25,7 +35,7 @@ const shops = [
     workTime: "11:00 – 22:00",
     address: "Возле ворот главного рынка",
     telegram: "https://t.me/monreall",
-    image: "images/coffee.jpg"
+    cover: "images/coffee.jpg"
   }
 ];
 
@@ -48,7 +58,8 @@ function renderShops() {
     card.className = "shop-card";
 
     card.innerHTML = `
-      <img src="${shop.image}">
+    
+      <img src="${shop.cover}">
       <div class="shop-info">
         <h3>${shop.name}</h3>
         <p>${shop.description}</p>
