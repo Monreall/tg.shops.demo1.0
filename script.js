@@ -4,27 +4,28 @@ const shops = [
     name: "Магазин 1",
     description: "Одежда и аксессуары для повседневной жизни.",
     workTime: "10:00 – 21:00",
-    address: "ул. Центральная, 15",
+    address: "Тотурбиева, напротив Севиллы",
     telegram: "https://t.me/monreall",
-    image: "images/IMG_2170.HEIC"
+    image: "images/shop.jpeg"
+    
   },
   {
     id: 2,
     name: "Магазин 2",
-    description: "Косметика и товары для ухода.",
+    description: "Магазин сотовой связи.",
     workTime: "09:00 – 20:00",
-    address: "пр. Мира, 42",
+    address: "Напротив ТЦ Джинан",
     telegram: "https://t.me/monreall",
-    image: "https://via.placeholder.com/300x200"
+    image: "images/mobile.jpg"
   },
   {
     id: 3,
     name: "Магазин 3",
     description: "Кофейня с авторскими напитками.",
     workTime: "11:00 – 22:00",
-    address: "ул. Парковая, 7",
+    address: "Возле ворот главного рынка",
     telegram: "https://t.me/monreall",
-    image: "https://via.placeholder.com/300x200"
+    image: "images/coffee.jpg"
   }
 ];
 
@@ -71,9 +72,15 @@ function openShop(shop) {
   shopAddress.textContent = shop.address;
   shopTelegram.href = shop.telegram;
 
-  shopImages.innerHTML = `<img src="${shop.image}">`;
-}
+  shopImages.innerHTML = "";
 
+  shop.images.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy"; // ← ВОТ ОН
+    shopImages.appendChild(img);
+});
+}
 backBtn.onclick = () => {
   details.classList.add("hidden");
   shopsContainer.classList.remove("hidden");

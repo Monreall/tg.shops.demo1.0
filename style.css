@@ -121,3 +121,24 @@ body {
 .tg-link:hover {
   background: #b29578;
 }
+
+/* GALLERY */
+.gallery {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery img {
+  flex: 0 0 80%;
+  max-width: 80%;
+  border-radius: 16px;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
