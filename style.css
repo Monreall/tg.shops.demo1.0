@@ -142,3 +142,27 @@ body {
   scroll-snap-align: start;
   object-fit: cover;
 }
+
+.categories {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+}
+
+.categories button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #e6ded6;
+  background: #ffffff;
+  color: #7a726b;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.categories button.active {
+  background: #c2a98d;
+  color: #ffffff;
+  border-color: #c2a98d;
+}

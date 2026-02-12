@@ -1,4 +1,19 @@
 
+const searchInput = document.getElementById("search");
+let activeTag = "all";
+
+const categoryButtons = document.querySelectorAll("#categories button");
+
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    categoryButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    activeTag = button.dataset.tag;
+    applyFilters();
+  });
+});
+
 const shops = [
   {
     id: 1,
@@ -12,7 +27,8 @@ const shops = [
     images: ["images/shop.jpeg",
             'images/shop.jpeg',
             "images/shop.jpeg",
-          ]
+          ],
+    tags: ["одежда"]
     
   },
   {
@@ -22,11 +38,12 @@ const shops = [
     workTime: "09:00 – 20:00",
     address: "Напротив ТЦ Джинан",
     telegram: "https://t.me/monreall",
-    cover: "covers/2.jpg",
+    cover: "covers/3.jpg",
     images: ["images/mobile.jpg",
             'images/mobile.jpg',
             "images/mobile.jpg",
-          ]
+          ],
+    tags: ["Электроника"]
   },
   {
     id: 3,
@@ -35,12 +52,12 @@ const shops = [
     workTime: "11:00 – 22:00",
     address: "Возле ворот главного рынка",
     telegram: "https://t.me/monreall",
-    cover: "covers/3.jpg",
+    cover: "covers/2.jpg",
     images: ["images/coffee.jpg",
             'images/coffee.jpg',
             "images/coffee.jpg",
-          ]
-
+          ],
+    tags: ["кофе"]
     
   }
 ];
@@ -56,22 +73,22 @@ const shopImages = document.getElementById("shop-images");
 const shopTelegram = document.getElementById("shop-telegram");
 const backBtn = document.getElementById("back-btn");
 
-function renderShops() {
+function renderShops(list = shops) {
   shopsContainer.innerHTML = "";
 
-  shops.forEach(shop => {
+  list.forEach(shop => {
     const card = document.createElement("div");
     card.className = "shop-card";
 
     card.innerHTML = `
-  <img src="${shop.cover}">
-  <div class="shop-info">
-    <h3>${shop.name}</h3>
-    <p>${shop.description}</p>
-    <p>⏰ ${shop.workTime}</p>
-    <p>📍 ${shop.address}</p>
-  </div>
-`;
+      <img src="${shop.cover}">
+      <div class="shop-info">
+        <h3>${shop.name}</h3>
+        <p>${shop.description}</p>
+        <p>⏰ ${shop.workTime}</p>
+        <p>📍 ${shop.address}</p>
+      </div>
+    `;
 
     card.onclick = () => openShop(shop);
     shopsContainer.appendChild(card);
@@ -103,3 +120,24 @@ backBtn.onclick = () => {
 };
 
 renderShops();
+
+
+
+searchInput.addEventListener("input", applyFilters);
+
+function applyFilters() {
+  const query = searchInput.value.toLowerCase();
+
+  const filtered = shops.filter(shop => {
+    const matchesSearch =
+      shop.name.toLowerCase().includes(query) ||
+      shop.description.toLowerCase().includes(query);
+
+    const matchesTag =
+      activeTag === "all" || shop.tags.includes(activeTag);
+
+    return matchesSearch && matchesTag;
+  });
+
+  renderShops(filtered);
+}
