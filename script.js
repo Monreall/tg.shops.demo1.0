@@ -7,7 +7,7 @@ const shops = [
     workTime: "10:00 – 21:00",
     address: "Тотурбиева, напротив Севиллы",
     telegram: "https://t.me/monreall",
-    cover: 'images/shop.jpeg',
+    cover: 'covers/1.jpg',
 
     images: ["images/shop.jpeg",
             'images/shop.jpeg',
@@ -22,7 +22,7 @@ const shops = [
     workTime: "09:00 – 20:00",
     address: "Напротив ТЦ Джинан",
     telegram: "https://t.me/monreall",
-    cover: "images/mobile.jpg",
+    cover: "covers/2.jpg",
     images: ["images/mobile.jpg",
             'images/mobile.jpg',
             "images/mobile.jpg",
@@ -35,7 +35,13 @@ const shops = [
     workTime: "11:00 – 22:00",
     address: "Возле ворот главного рынка",
     telegram: "https://t.me/monreall",
-    cover: "images/coffee.jpg"
+    cover: "covers/3.jpg",
+    images: ["images/coffee.jpg",
+            'images/coffee.jpg',
+            "images/coffee.jpg",
+          ]
+
+    
   }
 ];
 
@@ -58,15 +64,14 @@ function renderShops() {
     card.className = "shop-card";
 
     card.innerHTML = `
-    
-      <img src="${shop.cover}">
-      <div class="shop-info">
-        <h3>${shop.name}</h3>
-        <p>${shop.description}</p>
-        <p>⏰ ${shop.workTime}</p>
-        <p>📍 ${shop.address}</p>
-      </div>
-    `;
+  <img src="${shop.cover}">
+  <div class="shop-info">
+    <h3>${shop.name}</h3>
+    <p>${shop.description}</p>
+    <p>⏰ ${shop.workTime}</p>
+    <p>📍 ${shop.address}</p>
+  </div>
+`;
 
     card.onclick = () => openShop(shop);
     shopsContainer.appendChild(card);
