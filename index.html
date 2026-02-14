@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Магазины города</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header">
+<header class="header" id="main-header">
   <div class="search">
-    <span class="icon">🔍</span>
-    <input type="text" placeholder="Поиск магазинов" id="search">
-    <div class="categories" id="categories">
-      <button class="active" data-tag="all">Все</button>
-      <button data-tag="кофе">Кофе</button>
-      <button data-tag="одежда">Одежда</button>
-      <button data-tag="Электроника">Электроника</button>
-</div>
+    <span>🔍</span>
+    <input type="text" id="search" placeholder="Поиск магазинов">
+  </div>
+
+  <div class="tabs">
+    <button id="all-tab" class="tab active">Все</button>
+    <button id="fav-tab" class="tab">❤️ Избранное</button>
   </div>
 </header>
 
 <main id="shops" class="shops"></main>
 
 <section id="shop-details" class="shop-details hidden">
-  <button id="back-btn" class="back-btn">← Назад</button>
 
-  <h2 id="shop-name"></h2>
+  <div class="shop-cover">
+    <img id="shop-cover-img">
+    <h2 id="shop-cover-title"></h2>
+    <button id="back-btn" class="back-btn">← Назад</button>
+  </div>
+
+  
   <p id="shop-description"></p>
 
   <div class="info">
+    <p id="shop-status"></p>
     <p>⏰ <span id="shop-time"></span></p>
     <p>📍 <span id="shop-address"></span></p>
   </div>
 
-  <div class="gallery" id="shop-images"></div>
+  <div id="shop-images" class="gallery"></div>
 
   <a id="shop-telegram" class="tg-link" target="_blank">
     Перейти в Telegram-канал
   </a>
+
 </section>
+
+<div id="lightbox" class="lightbox hidden">
+  <img id="lightbox-img">
+</div>
 
 <script src="script.js"></script>
 </body>
