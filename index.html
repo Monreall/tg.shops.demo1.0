@@ -3,46 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Каталог Хасавюрт</title>
+  <title>Магазины города</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header id="main-header">
+<header class="header" id="main-header">
+
   <div class="search">
+    <span>🔍</span>
     <input type="text" id="search" placeholder="Поиск магазинов">
   </div>
 
+  
+
   <div class="filters">
-    <button data-type="all" class="active">Все</button>
-    <button data-type="Одежда">Одежда</button>
-    <button data-type="Электроника">Электроника</button>
-    <button data-type="Кофе">Кофе</button>
+    <button data-type="all" class="filter-btn active">Все</button>
+    <button data-type="Одежда" class="filter-btn">Одежда</button>
+    <button data-type="Электроника" class="filter-btn">Электроника</button>
+    <button data-type="Кофе" class="filter-btn">Кофе</button>
   </div>
+
 </header>
 
-<div class="banner">
-  <h2>Реклама</h2>
-  <p>Здесь может быть ваша реклама</p>
-</div>
+<main id="shops" class="shops"></main>
 
-<main id="shops"></main>
+<section id="shop-details" class="shop-details hidden">
 
-<section id="shop-details" class="hidden">
-  <button id="back-btn">← Назад</button>
-  <h2 id="shop-name"></h2>
-  <p id="shop-status"></p>
+  <div class="shop-cover">
+    <img id="shop-cover-img">
+    <h2 id="shop-cover-title"></h2>
+    <button id="back-btn" class="back-btn">← Назад</button>
+  </div>
+
   <p id="shop-description"></p>
-  <p id="shop-time"></p>
-  <p id="shop-address"></p>
-  <div id="shop-images"></div>
-  <a id="shop-telegram" target="_blank">Перейти в Telegram</a>
+
+  <div class="info">
+    <p id="shop-status"></p>
+    <p>⏰ <span id="shop-time"></span></p>
+    <p>📍 <span id="shop-address"></span></p>
+  </div>
+
+  <div id="shop-images" class="gallery"></div>
+
+  <a id="shop-telegram" class="tg-link" target="_blank">
+    Перейти в Telegram-канал
+  </a>
+
 </section>
 
+<div id="lightbox" class="lightbox hidden">
+  <img id="lightbox-img">
+</div>
+
 <nav class="bottom-nav">
-  <button id="nav-shops" class="active">Магазины</button>
-  <button>Товары</button>
-  <button id="nav-fav">Избранное</button>
+  <button id="nav-main" class="bottom-btn active">🏬 Магазины</button>
+  <button id="nav-fav-bottom" class="bottom-btn">❤️ Избранное</button>
 </nav>
 
 <script src="script.js"></script>
