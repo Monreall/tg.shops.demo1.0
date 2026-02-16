@@ -1,244 +1,166 @@
-/* ---------- ЭЛЕМЕНТЫ ---------- */
-
-const searchInput = document.getElementById("search");
-const mainHeader = document.getElementById("main-header");
-
-const allTab = document.getElementById("all-tab");
-const favTab = document.getElementById("fav-tab");
-
 const shopsContainer = document.getElementById("shops");
 const details = document.getElementById("shop-details");
-
-const shopCoverImg = document.getElementById("shop-cover-img");
-const shopCoverTitle = document.getElementById("shop-cover-title");
-const shopDescription = document.getElementById("shop-description");
-const shopStatus = document.getElementById("shop-status");
-const shopTime = document.getElementById("shop-time");
-const shopAddress = document.getElementById("shop-address");
-const shopImages = document.getElementById("shop-images");
-const shopTelegram = document.getElementById("shop-telegram");
+const searchInput = document.getElementById("search");
+const filterButtons = document.querySelectorAll(".filters button");
 const backBtn = document.getElementById("back-btn");
+const navFav = document.getElementById("nav-fav");
+const navShops = document.getElementById("nav-shops");
 
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-/* ---------- СОСТОЯНИЕ ---------- */
-
+let currentType = "all";
+let currentView = "shops";
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-let currentView = "all";
-
-/* ---------- ДАННЫЕ ---------- */
 
 const shops = [
   {
     id: 1,
     name: "Магазин 1",
-    description: "Одежда и аксессуары для повседневной жизни.",
+    type: "Одежда",
+    description: "Одежда и аксессуары.",
     workTime: "09:00 – 18:00",
-    address: "Тотурбиева, напротив Севиллы",
+    address: "Центр",
     telegram: "https://t.me/monreall",
-    cover: "covers/1.jpg",
-    images: [
-      "images/shop.jpeg",
-      "images/shop.jpeg",
-      "images/shop.jpeg"
-    ]
+    cover: "https://picsum.photos/300/200?1"
   },
   {
     id: 2,
     name: "Магазин 2",
-    description: "Магазин сотовой связи.",
+    type: "Электроника",
+    description: "Техника и гаджеты.",
     workTime: "10:00 – 20:00",
-    address: "Напротив ТЦ Джинан",
+    address: "Джинан",
     telegram: "https://t.me/monreall",
-    cover: "covers/2.jpg",
-    images: [
-      "images/mobile.jpg",
-      "images/mobile.jpg",
-      "images/mobile.jpg"
-    ]
+    cover: "https://picsum.photos/300/200?2"
   },
   {
     id: 3,
     name: "Магазин 3",
-    description: "Кофейня с авторскими напитками.",
+    type: "Кофе",
+    description: "Кофейня.",
     workTime: "11:00 – 22:00",
-    address: "Возле ворот главного рынка",
+    address: "Рынок",
     telegram: "https://t.me/monreall",
-    cover: "covers/3.jpg",
-    images: [
-      "images/coffee.jpg",
-      "images/coffee.jpg",
-      "images/coffee.jpg"
-    ]
+    cover: "https://picsum.photos/300/200?3"
   }
 ];
 
-/* ---------- ОТКРЫТО / ЗАКРЫТО ---------- */
-
-function isShopOpen(workTime) {
+function isOpen(workTime) {
   const now = new Date();
-  const currentHours = now.getHours();
-  const currentMinutes = now.getMinutes();
-
   const [start, end] = workTime.split(" – ");
-  const [startH, startM] = start.split(":").map(Number);
-  const [endH, endM] = end.split(":").map(Number);
+  const [sH, sM] = start.split(":").map(Number);
+  const [eH, eM] = end.split(":").map(Number);
 
-  const startTotal = startH * 60 + startM;
-  const endTotal = endH * 60 + endM;
-  const currentTotal = currentHours * 60 + currentMinutes;
+  const current = now.getHours()*60 + now.getMinutes();
+  const startMin = sH*60 + sM;
+  const endMin = eH*60 + eM;
 
-  return currentTotal >= startTotal && currentTotal <= endTotal;
+  return current >= startMin && current <= endMin;
 }
 
-/* ---------- ИЗБРАННОЕ ---------- */
-
-function toggleFavorite(id) {
-  if (favorites.includes(id)) {
-    favorites = favorites.filter(fav => fav !== id);
-  } else {
-    favorites.push(id);
-  }
-
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  applyFilters();
-}
-
-/* ---------- РЕНДЕР ---------- */
-
-function renderShops(list = shops) {
+function render(list) {
   shopsContainer.innerHTML = "";
 
-  if (list.length === 0) {
-    shopsContainer.innerHTML = "<p style='padding:20px;'>Нет магазинов</p>";
-    return;
-  }
+  list.sort((a,b) => isOpen(b.workTime) - isOpen(a.workTime));
 
   list.forEach(shop => {
-
-    const open = isShopOpen(shop.workTime);
-    const status = open
-      ? '<span class="open">🟢 Открыто</span>'
-      : '<span class="closed">🔴 Закрыто</span>';
-
-    const isFav = favorites.includes(shop.id);
-    const heart = isFav ? "❤️" : "🤍";
-
     const card = document.createElement("div");
     card.className = "shop-card";
+
+    const open = isOpen(shop.workTime);
+    const heart = favorites.includes(shop.id) ? "❤️" : "🤍";
 
     card.innerHTML = `
       <div class="favorite">${heart}</div>
       <img src="${shop.cover}">
-      <div class="shop-info">
-        <h3>${shop.name}</h3>
-        <p>${status}</p>
-        <p>${shop.description}</p>
-        <p>⏰ ${shop.workTime}</p>
-        <p>📍 ${shop.address}</p>
-      </div>
+      <h3>${shop.name}</h3>
+      <p class="${open ? "open" : "closed"}">
+        ${open ? "Открыто" : "Закрыто"}
+      </p>
     `;
 
-    card.querySelector(".favorite").addEventListener("click", (e) => {
+    card.querySelector(".favorite").onclick = (e) => {
       e.stopPropagation();
-      toggleFavorite(shop.id);
-    });
+      toggleFav(shop.id);
+    };
 
-    card.onclick = () => openShop(shop);
+    card.onclick = () => openDetails(shop);
     shopsContainer.appendChild(card);
   });
 }
 
-/* ---------- ОТКРЫТИЕ МАГАЗИНА ---------- */
+function applyFilters() {
+  let filtered = shops;
 
-function openShop(shop) {
-  shopsContainer.classList.add("hidden");
-  details.classList.remove("hidden");
-  mainHeader.classList.add("hidden");
+  if (currentView === "favorites") {
+    filtered = filtered.filter(s => favorites.includes(s.id));
+  }
 
-  const open = isShopOpen(shop.workTime);
-  const status = open
-    ? '<span class="open">🟢 Открыто</span>'
-    : '<span class="closed">🔴 Закрыто</span>';
+  if (currentType !== "all") {
+    filtered = filtered.filter(s => s.type === currentType);
+  }
 
-  shopCoverImg.src = shop.cover;
-  shopCoverTitle.textContent = shop.name;
-  shopDescription.textContent = shop.description;
-  shopStatus.innerHTML = status;
-  shopTime.textContent = shop.workTime;
-  shopAddress.textContent = shop.address;
-  shopTelegram.href = shop.telegram;
+  const query = searchInput.value.toLowerCase();
+  filtered = filtered.filter(s =>
+    s.name.toLowerCase().includes(query)
+  );
 
-  shopImages.innerHTML = "";
-
-  shop.images.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.loading = "lazy";
-
-    img.addEventListener("click", () => {
-      lightboxImg.src = src;
-      lightbox.classList.remove("hidden");
-    });
-
-    shopImages.appendChild(img);
-  });
+  render(filtered);
 }
 
-/* ---------- НАЗАД ---------- */
+function toggleFav(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(f => f !== id);
+  } else {
+    favorites.push(id);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  applyFilters();
+}
+
+function openDetails(shop) {
+  document.getElementById("main-header").classList.add("hidden");
+  shopsContainer.classList.add("hidden");
+  details.classList.remove("hidden");
+
+  document.getElementById("shop-name").textContent = shop.name;
+  document.getElementById("shop-description").textContent = shop.description;
+  document.getElementById("shop-time").textContent = shop.workTime;
+  document.getElementById("shop-address").textContent = shop.address;
+  document.getElementById("shop-telegram").href = shop.telegram;
+
+  const open = isOpen(shop.workTime);
+  document.getElementById("shop-status").textContent =
+    open ? "🟢 Открыто" : "🔴 Закрыто";
+}
 
 backBtn.onclick = () => {
   details.classList.add("hidden");
   shopsContainer.classList.remove("hidden");
-  mainHeader.classList.remove("hidden");
+  document.getElementById("main-header").classList.remove("hidden");
 };
 
-/* ---------- LIGHTBOX ---------- */
-
-lightbox.addEventListener("click", () => {
-  lightbox.classList.add("hidden");
+filterButtons.forEach(btn => {
+  btn.onclick = () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentType = btn.dataset.type;
+    applyFilters();
+  };
 });
-
-/* ---------- ВКЛАДКИ ---------- */
-
-allTab.addEventListener("click", () => {
-  currentView = "all";
-  allTab.classList.add("active");
-  favTab.classList.remove("active");
-  applyFilters();
-});
-
-favTab.addEventListener("click", () => {
-  currentView = "favorites";
-  favTab.classList.add("active");
-  allTab.classList.remove("active");
-  applyFilters();
-});
-
-/* ---------- ФИЛЬТР ---------- */
-
-function applyFilters() {
-  const query = searchInput.value.toLowerCase();
-
-  let filtered = shops.filter(shop =>
-    shop.name.toLowerCase().includes(query) ||
-    shop.description.toLowerCase().includes(query)
-  );
-
-  if (currentView === "favorites") {
-    filtered = filtered.filter(shop =>
-      favorites.includes(shop.id)
-    );
-  }
-
-  renderShops(filtered);
-}
-
-/* ---------- ПОИСК ---------- */
 
 searchInput.addEventListener("input", applyFilters);
 
-/* ---------- СТАРТ ---------- */
+navFav.onclick = () => {
+  currentView = "favorites";
+  navFav.classList.add("active");
+  navShops.classList.remove("active");
+  applyFilters();
+};
 
-renderShops();
+navShops.onclick = () => {
+  currentView = "shops";
+  navShops.classList.add("active");
+  navFav.classList.remove("active");
+  applyFilters();
+};
+
+render(shops);

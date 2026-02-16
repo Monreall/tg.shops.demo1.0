@@ -3,53 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Магазины города</title>
+  <title>Каталог Хасавюрт</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header" id="main-header">
+<header id="main-header">
   <div class="search">
-    <span>🔍</span>
     <input type="text" id="search" placeholder="Поиск магазинов">
   </div>
 
-  <div class="tabs">
-    <button id="all-tab" class="tab active">Все</button>
-    <button id="fav-tab" class="tab">❤️ Избранное</button>
+  <div class="filters">
+    <button data-type="all" class="active">Все</button>
+    <button data-type="Одежда">Одежда</button>
+    <button data-type="Электроника">Электроника</button>
+    <button data-type="Кофе">Кофе</button>
   </div>
 </header>
 
-<main id="shops" class="shops"></main>
+<div class="banner">
+  <h2>Реклама</h2>
+  <p>Здесь может быть ваша реклама</p>
+</div>
 
-<section id="shop-details" class="shop-details hidden">
+<main id="shops"></main>
 
-  <div class="shop-cover">
-    <img id="shop-cover-img">
-    <h2 id="shop-cover-title"></h2>
-    <button id="back-btn" class="back-btn">← Назад</button>
-  </div>
-
-  
+<section id="shop-details" class="hidden">
+  <button id="back-btn">← Назад</button>
+  <h2 id="shop-name"></h2>
+  <p id="shop-status"></p>
   <p id="shop-description"></p>
-
-  <div class="info">
-    <p id="shop-status"></p>
-    <p>⏰ <span id="shop-time"></span></p>
-    <p>📍 <span id="shop-address"></span></p>
-  </div>
-
-  <div id="shop-images" class="gallery"></div>
-
-  <a id="shop-telegram" class="tg-link" target="_blank">
-    Перейти в Telegram-канал
-  </a>
-
+  <p id="shop-time"></p>
+  <p id="shop-address"></p>
+  <div id="shop-images"></div>
+  <a id="shop-telegram" target="_blank">Перейти в Telegram</a>
 </section>
 
-<div id="lightbox" class="lightbox hidden">
-  <img id="lightbox-img">
-</div>
+<nav class="bottom-nav">
+  <button id="nav-shops" class="active">Магазины</button>
+  <button>Товары</button>
+  <button id="nav-fav">Избранное</button>
+</nav>
 
 <script src="script.js"></script>
 </body>
