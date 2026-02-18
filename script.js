@@ -83,11 +83,11 @@ function renderShops(list = shops) {
     card.className = "shop-card";
 
     card.innerHTML = `
-      <img src="${shop.cover}">
-      <div class="shop-info">
-        <h3>${shop.name}</h3>
-        <p>${status}</p>
-      </div>
+        <img src="${shop.cover}">
+        <div class="shop-info">
+          <h3>${shop.name}</h3>
+          <p>${status}</p>
+  </div>
     `;
 
     card.onclick = () => openShop(shop);
