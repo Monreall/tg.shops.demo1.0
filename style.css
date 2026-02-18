@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -32,181 +28,7 @@ body {
   background: transparent;
 }
 
-/* SHOP LIST */
-.shops {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.shop-card {
-  display: flex;
-  gap: 14px;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 14px;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-  transition: transform 0.2s;
-}
-
-.shop-card:hover {
-  transform: translateY(-3px);
-}
-
-.shop-card img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 14px;
-}
-
-.shop-info h3 {
-  margin: 0 0 6px;
-}
-
-.shop-info p {
-  margin: 3px 0;
-  font-size: 14px;
-  color: #7a726b;
-}
-
-/* DETAILS */
-.hidden {
-  display: none;
-}
-
-.shop-details {
-  padding: 0 16px 20px;
-}
-
-/* COVER */
-.shop-cover {
-  position: relative;
-  height: 220px;
-  border-radius: 0 0 24px 24px;
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-
-.shop-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.shop-cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
-}
-
-.shop-cover h2 {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  color: white;
-  margin: 0;
-  z-index: 2;
-}
-
-/* BACK BUTTON */
-.back-btn {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 3;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-/* GALLERY */
-.gallery {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  margin-top: 16px;
-}
-
-.gallery img {
-  flex: 0 0 80%;
-  max-width: 80%;
-  border-radius: 16px;
-  scroll-snap-align: start;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-/* TELEGRAM BUTTON */
-.tg-link {
-  display: block;
-  margin-top: 20px;
-  padding: 14px;
-  text-align: center;
-  background: #c2a98d;
-  color: white;
-  text-decoration: none;
-  border-radius: 16px;
-  font-weight: 600;
-}
-
-/* LIGHTBOX */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.lightbox.hidden {
-  display: none !important;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 16px;
-}
-.open {
-  color: #2e9f4d;
-  font-weight: 600;
-}
-
-.closed {
-  color: #d13b3b;
-  font-weight: 600;
-}
-.tabs {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.tab {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: #e6ded6;
-  font-weight: 600;
-}
-
-.tab.active {
-  background: #c2a98d;
-  color: white;
-}
-/* ---------- ФИЛЬТРЫ ---------- */
-
+/* FILTERS */
 .filters {
   display: flex;
   gap: 8px;
@@ -220,9 +42,7 @@ body {
   border: none;
   background: #e6ded6;
   cursor: pointer;
-  font-size: 14px;
-  white-space: nowrap;
-  transition: 0.2s;
+  font-size: 13px;
 }
 
 .filter-btn.active {
@@ -230,133 +50,17 @@ body {
   color: white;
 }
 
-/* ---------- НИЖНЯЯ НАВИГАЦИЯ ---------- */
-
-.bottom-nav {
-  position: fixed;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  background: white;
-  border-radius: 30px;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  z-index: 1000;
-}
-
-.bottom-btn {
-  border: none;
-  background: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.bottom-btn.active {
-  background: #c2a98d;
-  color: white;
-}
-
-body {
-  padding-bottom: 100px;
-}
-/* ---------- КНОПКА ИЗБРАННОГО В ДЕТАЛЯХ ---------- */
-
-.fav-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 3;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s;
-}
-
-.fav-btn.active {
-  background: #c2a98d;
-  color: white;
-}
-/* ---------- ПЛАВНЫЕ ПЕРЕХОДЫ ---------- */
-
-.shop-details,
-.shops {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.hidden {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.fade-in {
-  animation: fadeIn 0.35s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Карточки появляются плавно */
-
-.shop-card {
-  animation: fadeIn 0.4s ease;
-}
-
-/* Нажатие */
-
-.shop-card:active {
-  transform: scale(0.98);
-}
-
-/* Сердечко анимация */
-
-.fav-btn:active {
-  transform: scale(1.2);
-}/* ---------- РЕКЛАМНЫЙ БАННЕР ---------- */
-
+/* BANNER */
 .ad-banner {
-  background: linear-gradient(135deg, #d8c2aa, #c2a98d);
-  color: white;
-  border-radius: 24px;
-  padding: 30px 20px;
-  text-align: center;
   margin: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-
-  height: 180px;   /* ← увеличили */
-}
-.ad-banner h2 {
-  margin: 0;
-  font-size: 22px;
+  border-radius: 26px;
+  padding: 50px 20px;
+  text-align: center;
+  background: linear-gradient(135deg,#d8c2aa,#c2a98d);
+  color: white;
 }
 
-.ad-banner p {
-  margin-top: 8px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* ---------- ПЛИТКА ---------- */
-
-/* ---------- СЕТКА ---------- */
-
+/* GRID */
 .shops-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -364,43 +68,32 @@ body {
   padding: 16px;
 }
 
-/* ---------- ПЛИТКА ---------- */
-
 .shop-card {
-  background: #ffffff;
+  background: white;
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  transition: 0.2s ease;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
+  transition: 0.2s;
 }
 
 .shop-card:active {
   transform: scale(0.97);
 }
 
-/* ---------- КАРТИНКА ---------- */
-
 .shop-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;   /* делает плитку квадратной */
+  aspect-ratio: 1/1;
   object-fit: cover;
 }
 
-/* ---------- ТЕКСТ ---------- */
-
 .shop-info {
   padding: 12px;
-  text-align: left;
 }
 
 .shop-info h3 {
   margin: 0;
   font-size: 15px;
-  font-weight: 600;
-  color: #2b2b2b;
 }
 
 .shop-info p {
@@ -408,27 +101,72 @@ body {
   font-size: 13px;
 }
 
-.shop-card:hover {
-  transform: translateY(-4px);
+/* STATUS */
+.open { color: #2e9f4d; }
+.closed { color: #d13b3b; }
+
+/* DETAILS */
+.hidden { display: none; }
+
+.shop-cover {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
 }
 
-.shop-card img {
+.shop-cover img {
   width: 100%;
-  height: 130px;
+  height: 100%;
   object-fit: cover;
 }
 
-.shop-info {
-  padding: 10px;
+.shop-cover h2 {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: white;
 }
 
-.shop-info h3 {
-  margin: 0;
-  font-size: 14px;
+.back-btn,
+.fav-btn {
+  position: absolute;
+  top: 16px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
-.shop-info p {
-  margin: 4px 0 0;
-  font-size: 12px;
-  color: #7a726b;
+.back-btn { left: 16px; }
+.fav-btn { right: 16px; }
+
+.fav-btn.active {
+  background: #c2a98d;
+  color: white;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.bottom-btn {
+  border: none;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bottom-btn.active {
+  color: #c2a98d;
 }
