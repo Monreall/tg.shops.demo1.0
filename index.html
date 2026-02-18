@@ -9,31 +9,32 @@
 <body>
 
 <header class="header" id="main-header">
-
   <div class="search">
     <span>🔍</span>
     <input type="text" id="search" placeholder="Поиск магазинов">
   </div>
-
-  
-
-  <div class="filters">
-    <button data-type="all" class="filter-btn active">Все</button>
-    <button data-type="Одежда" class="filter-btn">Одежда</button>
-    <button data-type="Электроника" class="filter-btn">Электроника</button>
-    <button data-type="Кофе" class="filter-btn">Кофе</button>
-  </div>
-
 </header>
 
-<main id="shops" class="shops"></main>
+<main id="shops" class="shops">
+
+  <!-- Рекламный баннер -->
+  <div class="ad-banner">
+    <h2>РЕКЛАМА</h2>
+    <p>Здесь может быть ваша реклама</p>
+  </div>
+
+  <div id="shops-grid" class="shops-grid"></div>
+
+</main>
 
 <section id="shop-details" class="shop-details hidden">
 
   <div class="shop-cover">
     <img id="shop-cover-img">
     <h2 id="shop-cover-title"></h2>
+
     <button id="back-btn" class="back-btn">← Назад</button>
+    <button id="fav-btn" class="fav-btn">🤍</button>
   </div>
 
   <p id="shop-description"></p>
@@ -58,7 +59,7 @@
 
 <nav class="bottom-nav">
   <button id="nav-main" class="bottom-btn active">🏬 Магазины</button>
-  <button id="nav-fav-bottom" class="bottom-btn">❤️ Избранное</button>
+  <button id="nav-fav" class="bottom-btn">❤️ Избранное</button>
 </nav>
 
 <script src="script.js"></script>
